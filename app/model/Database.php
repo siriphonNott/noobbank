@@ -9,9 +9,9 @@ class Database
     public function connect($value = '')
     {
         $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "bank";
+        $username = $username;
+        $password = $password;
+        $dbname = $dbname;
 
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
