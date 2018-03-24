@@ -1,0 +1,32 @@
+.receive {
+  background-color:#d9ffd996;
+}
+.transfer {
+  background-color:#fff2f2e0;
+}
+.fz-amount {
+  font-size:38px!important;
+}
+.error-border {
+  border:solid 1px red !important;
+}
+.success {
+  color:green;
+}
+.error {
+  color:#dd0707c4;
+}
+.center {
+  text-align:center;
+}
+.active-menu {
+  box-shadow: 3px 3px 5px 1px rgba(120,120,120,0.5);
+  background-color: #9bbb3880;
+}
+.dropdown-menu { 
+  right:0;
+  left: unset;
+}
+.preloader {
+  background:none!important;
+}
