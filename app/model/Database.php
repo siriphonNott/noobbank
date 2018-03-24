@@ -6,7 +6,7 @@ use \PDO;
 
 class Database
 {
-    public function connect($value = '')
+    public function connect($username, $password, $dbname)
     {
         $servername = "localhost";
         $username = $username;
