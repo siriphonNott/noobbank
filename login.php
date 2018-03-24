@@ -3,7 +3,6 @@ session_start();
 if (isset($_SESSION['customer_id'])) {
     header('location: index.php');
 }
-
 ?>
 
   <!DOCTYPE html>
@@ -67,7 +66,7 @@ if (isset($_SESSION['customer_id'])) {
                   <span class="input-group-addon">
                     <i class="fa fa-lock f25"></i>
                   </span>
-                  <input type="text" class="form-control" id="pass" name="pass" placeholder="Password" required data-error="Please Enter Password.">
+                  <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required data-error="Please Enter Password.">
                 </div>
                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 <div class="help-block with-errors"></div>

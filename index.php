@@ -1,7 +1,7 @@
 <?php
 
 require_once 'service/checkAuth.php';
-require_once 'vendor/autoload.php';
+require_once 'app/model/autoload.php';
 
 use Model\Fund;
 use Model\Member;
@@ -268,14 +268,14 @@ $count = 0;
                         </thead>
                         <tbody>
                           <?php foreach ($trans as $value) {
-    $count++;
-    $class = 'receive';
-    $type = 'รับเงิน';
-    if ($value['source_customer_id'] == $_SESSION['customer_id']) {
-        $class = 'transfer';
-        $type = 'โอนเงิน';
-    }
-    echo '<tr  class="' . $class . '">
+                            $count++;
+                            $class = 'receive';
+                            $type = 'รับเงิน';
+                            if ($value['source_customer_id'] == $_SESSION['customer_id']) {
+                                $class = 'transfer';
+                                $type = 'โอนเงิน';
+                            }
+                            echo '<tr  class="' . $class . '">
                             <td>' . $count . '</td>
                             <td>' . $type . '</td>
                             <td>' . date_format(date_create($value['created_at']), "d/m/Y H:i:s") . '</td>
@@ -289,7 +289,7 @@ $count = 0;
 													</div>
 												</td> -->
                           </tr>';
-}?>
+                            }?>
                         </tbody>
                       </table>
                     </div>
@@ -397,7 +397,7 @@ $count = 0;
               </div>
             </div>
           </div>
-          <footer class="footer text-center"> 2018 &copy; noobbank.com by <a target="_blank" href="https://nottdev.com">nottdev</a> </footer>
+          <footer class="footer text-center"> 2018 &copy; noobbank.com by <a target="_blank" href="https://nottdev.com">NottDev</a> </footer>
         </div>
         <!-- /#page-wrapper -->
       </div>

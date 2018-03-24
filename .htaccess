@@ -1,0 +1,12 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+ErrorDocument 404 /errordocs/request-error
+
+ErrorDocument 401 /errordocs/request-error
+
+ErrorDocument 403 /errordocs/request-error
+
+ErrorDocument 500 http://noobbank-nottdev.com/errordocs/error

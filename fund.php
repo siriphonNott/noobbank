@@ -1,7 +1,7 @@
 <?php
 
 require_once 'service/checkAuth.php';
-require_once 'vendor/autoload.php';
+require_once 'app/model/autoload.php';
 
 use Model\Fund;
 use Model\Member;
@@ -389,7 +389,7 @@ function getNameFund($id)
               </div>
             </div>
           </div>
-          <footer class="footer text-center"> 2018 &copy; noobbank.com by <a target="_blank" href="https://nottdev.com">nottdev</a> </footer>
+          <footer class="footer text-center"> 2018 &copy; noobbank.com by <a target="_blank" href="https://nottdev.com">NottDev</a> </footer>
         </div>
         <!-- /#page-wrapper -->
       </div>

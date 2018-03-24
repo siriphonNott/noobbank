@@ -1,6 +1,6 @@
 <?php
 
-require_once '../vendor/autoload.php';
+require_once '../app/model/autoload.php';
 
 use Auth\Authen;
 use DB\Database;
