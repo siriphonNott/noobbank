@@ -1,6 +1,7 @@
 <?php
 
 namespace DB;
+
 use \PDO;
 
 class Database
@@ -22,12 +23,12 @@ class Database
         }
     }
 
-    public function connect2($value = '')
+    public function connect2($username, $password, $dbname)
     {
         $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "bank";
+        $username = $username;
+        $password = $password;
+        $dbname = $dbname;
 
         // Create connection
         $conn = new \mysqli($servername, $username, $password, $dbname);
@@ -65,8 +66,8 @@ class Database
     {
         // $username = mysqli_real_escape_string($conn, $param[0]);
         // $password = mysqli_real_escape_string($conn, $param[1]);
-        $username =  $param[0];
-        $password =  $param[1];
+        $username = $param[0];
+        $password = $param[1];
         $sql = "SELECT * FROM customers WHERE username = '$username' AND password= '$password' ";
         $result = $conn->query($sql);
         $temp = [];

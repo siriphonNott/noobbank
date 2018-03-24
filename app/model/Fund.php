@@ -1,7 +1,7 @@
 <?php
-
 namespace Model;
 
+require_once 'config.php';
 require_once "Database.php";
 use DB\Database;
 use \PDO;
@@ -11,7 +11,7 @@ class Fund
     public function getData($id = null, $type = null)
     {
         $db = new Database();
-        $conn = $db->connect();
+        $conn = $db->connect(DB_USERNAME, DB_PASSWORD, DB_NAME);
         try {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // $stmt = $conn->prepare("INSERT INTO customers () VALUES ()");
@@ -28,7 +28,7 @@ class Fund
             $total = 0;
             foreach ($stmt->fetchAll() as $k => $v) {
                 $temp[] = $v;
-                $total += ($v['fund_unit']*$v['fund_cost']);
+                $total += ($v['fund_unit'] * $v['fund_cost']);
             }
             $result['rows'] = ($temp);
             $result['total'] = $total;
@@ -54,7 +54,7 @@ class Fund
     public function insert($param)
     {
         $db = new Database();
-        $conn = $db->connect();
+        $conn = $db->connect(DB_USERNAME, DB_PASSWORD, DB_NAME);
         try {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // $stmt = $conn->prepare("INSERT INTO customers () VALUES ()");
@@ -62,7 +62,7 @@ class Fund
             $fund_type = $param[1];
             $fund_unit = $param[2];
             $fund_cost = $param[3];
-  
+
             $sql = "INSERT INTO funds (customer_id, fund_type, fund_unit, fund_cost) ";
             $sql .= " VALUES (:customer_id, :fund_type, :fund_unit, :fund_cost)";
             $stmt = $conn->prepare($sql);

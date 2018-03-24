@@ -2,6 +2,7 @@
 
 namespace Model;
 
+require_once 'config.php';
 require_once "Database.php";
 use DB\Database;
 use \PDO;
@@ -11,7 +12,7 @@ class Transaction
     public function getData($id = null, $type = null)
     {
         $db = new Database();
-        $conn = $db->connect();
+        $conn = $db->connect(DB_USERNAME, DB_PASSWORD, DB_NAME);
         try {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // $stmt = $conn->prepare("INSERT INTO customers () VALUES ()");
@@ -51,7 +52,7 @@ class Transaction
     public function insert($param)
     {
         $db = new Database();
-        $conn = $db->connect();
+        $conn = $db->connect(DB_USERNAME, DB_PASSWORD, DB_NAME);
         try {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // $stmt = $conn->prepare("INSERT INTO customers () VALUES ()");

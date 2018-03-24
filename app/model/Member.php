@@ -1,7 +1,7 @@
 <?php
 
 namespace Model;
-
+require_once 'config.php';
 require_once "Database.php";
 use DB\Database;
 use \PDO;
@@ -11,7 +11,7 @@ class Member
     public function getData($id = null)
     {
         $db = new Database();
-        $conn = $db->connect();
+        $conn = $db->connect(DB_USERNAME, DB_PASSWORD, DB_NAME);
         try {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // $stmt = $conn->prepare("INSERT INTO customers () VALUES ()");
@@ -39,7 +39,7 @@ class Member
     public function getId($account_no)
     {
         $db = new Database();
-        $conn = $db->connect();
+        $conn = $db->connect(DB_USERNAME, DB_PASSWORD, DB_NAME);
         try {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // $stmt = $conn->prepare("INSERT INTO customers () VALUES ()");
@@ -66,7 +66,7 @@ class Member
     public function updateAmount($param)
     {
         $db = new Database();
-        $conn = $db->connect();
+        $conn = $db->connect(DB_USERNAME, DB_PASSWORD, DB_NAME);
         try {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // $stmt = $conn->prepare("INSERT INTO customers () VALUES ()");

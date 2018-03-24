@@ -1,6 +1,7 @@
 <?php
 
 require_once '../app/model/autoload.php';
+require_once '../app/model/config.php';
 require_once '../app/controller/mailer.php';
 
 use DB\Database;
@@ -24,8 +25,8 @@ if (!isset($_POST) || empty($obj['action'])) {
 
     $db = new Database();
 
-    // $conn = $db->connect();
-    $conn = $db->connect2();
+    // $conn = $db->connect(DB_USERNAME, DB_PASSWORD, DB_NAME);
+    $conn = $db->connect2(DB_USERNAME, DB_PASSWORD, DB_NAME);
 
     if ($obj['action'] == 'signin') {
         if (empty($obj['user']) || empty($obj['pass'])) {
