@@ -17,7 +17,7 @@ function sign_in() {
 
   $.ajax({
     type: 'POST',
-    url: 'service/auth.php',
+    url: 'api/auth.php',
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     data: JSON.stringify(json),
@@ -86,7 +86,7 @@ function sign_up() {
 
   $.ajax({
     type: 'POST',
-    url: 'service/auth.php',
+    url: 'api/auth.php',
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     data: JSON.stringify(json),
@@ -104,7 +104,13 @@ function sign_up() {
       reset_btn_loading('btn-signup', 'SIGN UP');
       var textResponse = 'Please check your infomation again.';
       if (jqXHR.responseJSON.errorMessage == 'DUPLICATE_ENTRY') {
-        textResponse = 'This email is already in use.';
+        textResponse = 'Your email is already in use.';
+      } else if (jqXHR.responseJSON.errorMessage == 'INVALID_FORMAT_EMAIL') {
+        textResponse = 'Your email is wrong format.';
+      } else if (jqXHR.responseJSON.errorMessage == 'INVALID_SMTP_EMAIL') {
+        textResponse = 'This email does not exist.';
+      } else {
+        textResponse = jqXHR.responseJSON.errorMessage;
       }
       $('#error_meessage').text(textResponse);
     }

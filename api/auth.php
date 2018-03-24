@@ -1,12 +1,9 @@
 <?php
 
 require_once '../app/model/autoload.php';
+require_once '../app/controller/mailer.php';
 
-use Auth\Authen;
 use DB\Database;
-
-$httpResponse = new SimpleRest();
-$auth = new Authen();
 $requestContentType = $_SERVER["CONTENT_TYPE"];
 
 $obj = [];
@@ -16,12 +13,12 @@ if (strpos($requestContentType, 'application/json') !== false) {
 } elseif (strpos($requestContentType, 'text/plain') !== false) {
     $obj = parse_str($_POST);
 } elseif (strpos($requestContentType, 'application/x-www-form-urlencoded') !== false) {
-    echo $httpResponse->set_http_response_status($requestContentType, 400, 'Unknow Content-type');
+    echo SimpleRest::set_http_response_status($requestContentType, 400, 'Unknow Content-type');
     die();
 }
 
 if (!isset($_POST) || empty($obj['action'])) {
-    echo $httpResponse->set_http_response_status($requestContentType, 403, 'Endpoint not found');
+    echo SimpleRest::set_http_response_status($requestContentType, 403, 'Endpoint not found');
     die();
 } else {
 
@@ -32,7 +29,7 @@ if (!isset($_POST) || empty($obj['action'])) {
 
     if ($obj['action'] == 'signin') {
         if (empty($obj['user']) || empty($obj['pass'])) {
-            echo $httpResponse->set_http_response_status($requestContentType, 400, 'BAD_REQUEST');
+            echo SimpleRest::set_http_response_status($requestContentType, 400, 'BAD_REQUEST');
         } else {
 
             // hash('sha256', 'something' );
@@ -49,20 +46,24 @@ if (!isset($_POST) || empty($obj['action'])) {
                 $_SESSION['lastname'] = $row[0]['lastname'];
                 $_SESSION['account_no'] = $row[0]['account_no'];
                 $_SESSION['amount'] = $row[0]['amount'];
+                $_SESSION['role'] = $row[0]['role'];
                 $_SESSION['expired_time'] = strtotime("+15 minutes");
-                echo $httpResponse->set_http_response_status($requestContentType, 200, 'CORRECT_LOGIN');
+                echo SimpleRest::set_http_response_status($requestContentType, 200, 'CORRECT_LOGIN');
             } else {
-                echo $httpResponse->set_http_response_status($requestContentType, 401, 'INCORRECT_LOGIN');
+                echo SimpleRest::set_http_response_status($requestContentType, 401, 'INCORRECT_LOGIN');
             }
         }
     } elseif ($obj['action'] == 'signup') {
         // hash('sha256', 'something' );
+
+        // CHECK EMPTY FIELD
         foreach ($obj as $key => $value) {
             if (empty($value)) {
-                echo $httpResponse->set_http_response_status($requestContentType, 400, 'INVALID_FIELD');
+                echo SimpleRest::set_http_response_status($requestContentType, 400, 'INVALID_FIELD');
                 exit();
             }
         }
+
         $param[] = (trim($obj['username_signup']));
         $param[] = (trim($obj['password_signup']));
         $param[] = (trim($obj['firstname_signup']));
@@ -71,22 +72,42 @@ if (!isset($_POST) || empty($obj['action'])) {
         $param[] = (trim($obj['tel_signup']));
 
         if ($param[1] != trim($obj['confirm_password_signup'])) {
-            echo $httpResponse->set_http_response_status($requestContentType, 400, 'INVALID_FIELD');
-        } else {
+            echo SimpleRest::set_http_response_status($requestContentType, 400, 'INVALID_FIELD');
+            exit();
+        }
+
+        $url = Utility::$uri_apilayer . "check?access_key=" . Utility::$access_key_apilayer . "&email=" . $param[4];
+        $resutl_check_mail = Utility::call_api($url, "GET");
+
+        // CHECK FORMAT EMAIL
+        if (!$resutl_check_mail['format_valid']) {
+            echo SimpleRest::set_http_response_status($requestContentType, 400, 'INVALID_FORMAT_EMAIL');
+            exit();
+        }
+        // CHECK SMTP EMAIL
+        if (!$resutl_check_mail['smtp_check']) {
+            echo SimpleRest::set_http_response_status($requestContentType, 400, 'INVALID_SMTP_EMAIL');
+            exit();
+        }
+
+        if (set_mail($param[2], $param[4])) {
             // $obj = $db->signup($conn, $param);
             $result = $db->signup2($conn, $param);
             if ($result === true) {
-                echo $httpResponse->set_http_response_status($requestContentType, 201, 'CREATED_SUCCESS');
+                echo SimpleRest::set_http_response_status($requestContentType, 201, 'CREATED_SUCCESS');
             } else {
                 if (strpos($result, 'Duplicate entry') !== false) {
-                    echo $httpResponse->set_http_response_status($requestContentType, 400, 'DUPLICATE_ENTRY');
+                    echo SimpleRest::set_http_response_status($requestContentType, 400, 'DUPLICATE_ENTRY');
                 } else {
-                    echo $httpResponse->set_http_response_status($requestContentType, 400, 'CREATED_FAIL');
+                    echo SimpleRest::set_http_response_status($requestContentType, 400, 'CREATED_FAIL');
                 }
             }
+        } else {
+            echo SimpleRest::set_http_response_status($requestContentType, 500, 'SENT_MAIL_FAILED');
+            exit();
         }
 
     } elseif ($obj['action'] == 'logout') {
-        $auth->logout();
+        Authen::logout();
     }
 }

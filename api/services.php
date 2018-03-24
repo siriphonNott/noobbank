@@ -2,7 +2,6 @@
 
 require_once '../app/model/autoload.php';
 
-use Auth\Authen;
 use Model\Fund;
 use Model\Member;
 use Model\Transaction;

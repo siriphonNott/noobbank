@@ -97,13 +97,13 @@ if (isset($_SESSION['customer_id'])) {
               </div>
 
               <div class="form-group has-feedback">
-                <input type="text" class="form-control" pattern="^[_A-z ]{1,}$" data-minlength="3" name="firstname_signup" placeholder="Firstname" required data-error="Please Enter Firstname.">
+                <input type="text" class="form-control" pattern="^[_A-z\u0E00-\u0E7F]{1,}$" data-minlength="3" name="firstname_signup" placeholder="Firstname" required data-error="Please Enter Firstname.">
                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 <div class="help-block with-errors"></div>
               </div>
 
               <div class="form-group has-feedback">
-                <input type="text" class="form-control"  name="lastname_signup"  pattern="^[_A-z ]{1,}$" data-minlength="3"  placeholder="Lastname" required data-error="Please Enter Lastname.">
+                <input type="text" class="form-control"  name="lastname_signup"  pattern="^[_A-z\u0E00-\u0E7F]{1,}$" data-minlength="3"  placeholder="Lastname" required data-error="Please Enter Lastname.">
                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 <div class="help-block with-errors"></div>
               </div>

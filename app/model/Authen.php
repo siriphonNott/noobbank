@@ -1,25 +1,23 @@
 <?php
 
-namespace Auth;
+class Authen
+{
 
-class Authen {
+    // function __construct(argument)
+    // {
+    //
+    // }
 
-	// function __construct(argument)
-	// {
-	//
-	// }
+    public function login($user, $pass)
+    {
 
-	public function login($user, $pass)
-	{
+    }
 
-	}
-
-	public function logout(){
-		session_start();
-		session_unset();
-		session_destroy();
-		header('Location: ../login.php');
-	}
+    public static function logout()
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+        header('Location: /login.php');
+    }
 }
-
- ?>

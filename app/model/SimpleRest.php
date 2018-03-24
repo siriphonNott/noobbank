@@ -3,22 +3,22 @@
 class SimpleRest
 {
 
-    private $httpVersion = "HTTP/1.1";
+    private static $httpVersion = "HTTP/1.1";
 
-    public function set_http_response_status($requestContentType, $statusCode, $reason = null)
+    public static function set_http_response_status($requestContentType, $statusCode, $reason = null)
     {
         if (in_array($statusCode, range(200, 206)) || in_array($statusCode, range(300, 308)) || in_array($statusCode, range(100, 103))) {
             $resJson['statusMessage'] = $reason;
         } else {
             $resJson['errorMessage'] = $reason;
         }
-        $statusMessage = $this->getHttpStatusMessage($statusCode);
-        header($this->httpVersion . " " . $statusCode . " " . $statusMessage);
+        $statusMessage = self::getHttpStatusMessage($statusCode);
+        header(self::$httpVersion . " " . $statusCode . " " . $statusMessage);
         header("Content-Type:" . $requestContentType);
         return json_encode($resJson);
     }
 
-    public function getHttpStatusMessage($statusCode)
+    public static function getHttpStatusMessage($statusCode)
     {
 
         $httpStatus = array(

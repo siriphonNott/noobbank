@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-if (!isset($_SESSION['customer_id'])) {
+if (!isset($_SESSION['role'])) {
     header('location: ./login.php');
 }
 
