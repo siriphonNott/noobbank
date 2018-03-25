@@ -109,6 +109,8 @@ function sign_up() {
         textResponse = 'Your email is wrong format.';
       } else if (jqXHR.responseJSON.errorMessage == 'INVALID_SMTP_EMAIL') {
         textResponse = 'This email does not exist.';
+      } else if (jqXHR.responseJSON.errorMessage == 'CREATED_FAIL') {
+        textResponse = 'Sorry! System malfunction.<br> Please contand admin.';
       } else {
         textResponse = jqXHR.responseJSON.errorMessage;
       }

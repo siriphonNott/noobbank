@@ -56,7 +56,7 @@ class Database
             $result['count'] = count($temp);
             return $result;
         } catch (PDOException $e) {
-            Utility::write_log("Error: " . $e->getMessage());
+            Utility::write_log("SQL Error: " . $e->getMessage());
             return false;
         }
     }
@@ -100,7 +100,7 @@ class Database
         if (mysqli_query($conn, $sql)) {
             return true;
         } else {
-            Utility::write_log(mysqli_error($conn));
+            Utility::write_log("SQL Error: " . mysqli_error($conn));
             return false;
         }
     }

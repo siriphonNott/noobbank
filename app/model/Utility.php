@@ -72,7 +72,7 @@ class Utility
             fopen($file, "w");
         }
         $current = file_get_contents($file);
-        $current .= $time . "=> " . ($data) . "\n";
+        $current .= "[" . $time . "] => " . ($data) . "\n";
         file_put_contents($file, $current);
     }
 }

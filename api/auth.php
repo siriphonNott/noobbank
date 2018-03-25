@@ -33,7 +33,7 @@ if (!isset($_POST) || empty($obj['action'])) {
             echo SimpleRest::set_http_response_status($requestContentType, 400, 'BAD_REQUEST');
         } else {
 
-            // hash('sha256', 'something' );
+            // hash('sha256', '<data>' );
             $param[] = (trim($obj['user']));
             $param[] = (trim($obj['pass']));
 
@@ -49,8 +49,10 @@ if (!isset($_POST) || empty($obj['action'])) {
                 $_SESSION['amount'] = $row[0]['amount'];
                 $_SESSION['role'] = $row[0]['role'];
                 $_SESSION['expired_time'] = strtotime("+15 minutes");
+                Utility::write_log("Authen: [" . $obj['user'] . "] is Successfully!");
                 echo SimpleRest::set_http_response_status($requestContentType, 200, 'CORRECT_LOGIN');
             } else {
+                Utility::write_log("Authen: [" . $obj['user'] . "] is failed!");
                 echo SimpleRest::set_http_response_status($requestContentType, 401, 'INCORRECT_LOGIN');
             }
         }
@@ -93,22 +95,23 @@ if (!isset($_POST) || empty($obj['action'])) {
 
         // print_r($resutl_check_mail);
         // die();
-        
-        if (set_mail($param[2], $param[4]) === true) {
-            // $obj = $db->signup($conn, $param);
-            $result = $db->signup2($conn, $param);
-            if ($result === true) {
-                echo SimpleRest::set_http_response_status($requestContentType, 201, 'CREATED_SUCCESS');
-            } else {
-                if (strpos($result, 'Duplicate entry') !== false) {
-                    echo SimpleRest::set_http_response_status($requestContentType, 400, 'DUPLICATE_ENTRY');
-                } else {
-                    echo SimpleRest::set_http_response_status($requestContentType, 400, 'CREATED_FAIL');
-                }
-            }
+
+        // $obj = $db->signup($conn, $param);
+        $result = $db->signup2($conn, $param);
+        if ($result === true) {
+            echo SimpleRest::set_http_response_status($requestContentType, 201, 'CREATED_SUCCESS');
         } else {
-            echo SimpleRest::set_http_response_status($requestContentType, 500, 'SENT_MAIL_FAILED');
-            exit();
+            if (strpos($result, 'Duplicate entry') !== false) {
+                echo SimpleRest::set_http_response_status($requestContentType, 400, 'DUPLICATE_ENTRY');
+            } else {
+                echo SimpleRest::set_http_response_status($requestContentType, 400, 'CREATED_FAIL');
+            }
+        }
+
+        if (set_mail($param[2], $param[4]) === true) {
+            Utility::write_log("SENT_EMAIL: " . $param[2] . " : " . $param[4] . " is Successfully!");
+        } else {
+            Utility::write_log("SENT_EMAIL: " . $param[2] . " : " . $param[4] . " is failed!");
         }
 
     } elseif ($obj['action'] == 'logout') {
