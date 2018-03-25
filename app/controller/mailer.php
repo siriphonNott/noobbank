@@ -1,6 +1,6 @@
 
 <?php
-require_once __DIR__ . '/../../vendor/phpmailer/class.phpmailer.php';
+require_once __DIR__ . '/phpmailer/class.phpmailer.php';
 
 function set_mail($name, $email)
 {

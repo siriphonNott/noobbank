@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['customer_id'])) {
     header('location: index.php');
 }
-
+require_once 'vendor/autoload.php';
 $access_key = "ba170435eb82bcd583dde27a769593e5";
 $email = 'siriphonnot@mail.com';
 $uri = "http://apilayer.net/api/";
@@ -11,27 +11,9 @@ $uri = "http://apilayer.net/api/";
 $url = $uri . "check?access_key=" . $access_key . "&email=" . $email;
 
 // USE Httpful
-// $response = \Httpful\Request::get($path)->send();
-// echo "<pre>";
-// var_dump($response->body);
-// die();
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8'));
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_PORT, null);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-curl_setopt($ch, CURLOPT_POSTFIELDS, null);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
-$resJson = curl_exec($ch);
-curl_close($ch);
-$result = json_decode($resJson, true);
-
+$response = \Httpful\Request::get($url)->send();
 echo "<pre>";
-var_dump($result);
+var_dump($response->body);
 die();
 
 ?>
