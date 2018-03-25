@@ -160,7 +160,7 @@ if (isset($_SESSION['customer_id'])) {
               </div>
 
               <div class="form-group text-align-center" style="margin-bottom: 0;">
-                <button type="submit" class="btn-primary btn-noob" id="btn-signup">SIGN UP</button>
+                <button type="submit" class="btn-noob" id="btn-signup">SIGN UP</button>
               </div>
             </form>
           </div>

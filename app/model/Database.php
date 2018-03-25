@@ -2,7 +2,9 @@
 
 namespace DB;
 
+require_once 'Utility.php';
 use \PDO;
+use \Utility;
 
 class Database
 {
@@ -16,7 +18,8 @@ class Database
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
         } catch (PDOException $e) {
-            return "Connection failed: " . $e->getMessage();
+            Utility::write_log("Connection failed: " . $e->getMessage());
+            return false;
         }
     }
 
@@ -29,7 +32,8 @@ class Database
         $conn->query("set names utf8");
         // Check connection
         if ($conn->connect_error) {
-            return die("Connection failed: " . $conn->connect_error);
+            Utility::write_log("Connection failed: " . $conn->connect_error);
+            return false;
         }
         return $conn;
     }
@@ -52,7 +56,8 @@ class Database
             $result['count'] = count($temp);
             return $result;
         } catch (PDOException $e) {
-            return "Error: " . $e->getMessage();
+            Utility::write_log("Error: " . $e->getMessage());
+            return false;
         }
     }
 
@@ -95,7 +100,8 @@ class Database
         if (mysqli_query($conn, $sql)) {
             return true;
         } else {
-            return mysqli_error($conn);
+            Utility::write_log(mysqli_error($conn));
+            return false;
         }
     }
 }

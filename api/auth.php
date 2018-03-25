@@ -91,7 +91,10 @@ if (!isset($_POST) || empty($obj['action'])) {
             exit();
         }
 
-        if (set_mail($param[2], $param[4])) {
+        // print_r($resutl_check_mail);
+        // die();
+        
+        if (set_mail($param[2], $param[4]) === true) {
             // $obj = $db->signup($conn, $param);
             $result = $db->signup2($conn, $param);
             if ($result === true) {
