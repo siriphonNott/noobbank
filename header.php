@@ -14,8 +14,13 @@ if ($_SERVER['REQUEST_URI'] == "/" || strpos($_SERVER['REQUEST_URI'], "index") !
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="PHP - OOP">
+    <meta name="author" content="NottDev">
+    <meta property="og:type" content="website">
+	  <meta property="og:site_name" content="Noob Bank">
+	  <meta property="og:title" content="Noob Bank with PHP OOP">
+	  <meta property="og:url" content="https://noobbank.nottdev.com/">
+	  <meta property="og:image" content="https://noobbank.nottdev.com/img/banner-show.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.ico">
     <title>Noob Bank</title>
     <!-- Bootstrap Core CSS -->
@@ -91,9 +96,9 @@ if ($_SERVER['REQUEST_URI'] == "/" || strpos($_SERVER['REQUEST_URI'], "index") !
 								</a>
 							</li> -->
                 <li class="dropdown-footer">
-                  <a href="#">
+                  <!-- <a href="#">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit profile
-                  </a>
+                  </a> -->
                   <a href="javascript:logout()">
                     <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
                   </a>
