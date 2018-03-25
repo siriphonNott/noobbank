@@ -7,7 +7,7 @@ use Model\Member;
 use Model\Transaction;
 
 $httpResponse = new SimpleRest();
-$requestContentType = $_SERVER["CONTENT_TYPE"];
+$requestContentType = @$_SERVER["CONTENT_TYPE"];
 $auth = new Authen();
 $member = new Member();
 $transaction = new Transaction();
@@ -32,10 +32,13 @@ if (!isset($_POST) || empty($obj['action'])) {
     if ($action == 'transfer') {
 
         $data_src = $member->getData($_SESSION['customer_id']);
-        $data_dst = $member->getId($obj['account_transfer']);
+        $data_dst = $member->getId($obj['account_number_des']);
 
         if ($data_dst['count'] == 0) {
             echo $httpResponse->set_http_response_status($requestContentType, 400, 'NOT_FOUND_ACCOUNT_NO');
+            die();
+        } elseif ($data_src['rows'][0]['account_no'] == $obj['account_number_des']) {
+            echo $httpResponse->set_http_response_status($requestContentType, 400, 'INVALID_ACCOUNT_NO');
             die();
         } elseif (($data_src['rows'][0]['amount'] - 25) < $obj['amount_transfer']) {
             echo $httpResponse->set_http_response_status($requestContentType, 400, 'INSUFFICIENT_AMOUNT');
@@ -46,7 +49,7 @@ if (!isset($_POST) || empty($obj['action'])) {
         $param[] = $_SESSION['customer_id']; // $source_customer_id
         $param[] = $data_dst['rows'][0]['customer_id']; // $destination_customer_id
         $param[] = $_SESSION['account_no']; // $source_account_no
-        $param[] = $obj['account_transfer']; // $destination_account_no
+        $param[] = $obj['account_number_des']; // $destination_account_no
         $param[] = $obj['amount_transfer']; // $amount
         $param[] = $_SESSION['customer_id']; // $action_by
 

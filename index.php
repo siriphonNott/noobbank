@@ -117,7 +117,7 @@ $count = 0;
                     <button class="btn btn-success" onclick="document.getElementById('id02').style.display='block'"> ซื้อกองทุน</button>
                   </div>
                   <div class="col-md-8 col-sm-6 col-xs-6">
-                    <h5 class="counter  text-primary">สามารถซื้อซื้อกองทุนที่ตรงกับไล์สไตล์คุณทั้ง LMF , LTF</h5>
+                    <h5 class="counter  text-primary">สามารถซื้อซื้อกองทุนที่ตรงกับไล์สไตล์คุณได้ที่นี่ แค่คลิกเดียว</h5>
                   </div>
                 </div>
               </div>
@@ -220,17 +220,15 @@ $count = 0;
                   <div class="w3-section">
 
                     <label>
-                      <b>Enter the amount you wish to deposit</b>
+                      <b>Enter To Amount Number</b>
+                    </label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="number" placeholder="Enter Account Number" id="account_number_des" name="account_number_des"
+                      required>
+                    <label>
+                      <b>Enter Amount</b>
                     </label>
                     <input class="w3-input w3-border w3-margin-bottom allownumericwithdecimal" type="number" placeholder="Enter Amount" id="amount_transfer"
                       name="amount_transfer" required>
-
-                    <label>
-                      <b>Account No. Recipient</b>
-                    </label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="number" placeholder="Enter Account No" id="account_transfer" name="account_transfer"
-                      required>
-
                     <label>
                       <b>Fee</b> 25฿
                     </label>

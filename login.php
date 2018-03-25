@@ -3,18 +3,18 @@ session_start();
 if (isset($_SESSION['customer_id'])) {
     header('location: index.php');
 }
-require_once 'vendor/autoload.php';
-$access_key = "ba170435eb82bcd583dde27a769593e5";
-$email = 'siriphonnot@mail.com';
-$uri = "http://apilayer.net/api/";
+// require_once 'vendor/autoload.php';
+// $access_key = "ba170435eb82bcd583dde27a769593e5";
+// $email = 'siriphonnot@mail.com';
+// $uri = "http://apilayer.net/api/";
 
-$url = $uri . "check?access_key=" . $access_key . "&email=" . $email;
+// $url = $uri . "check?access_key=" . $access_key . "&email=" . $email;
 
-// USE Httpful
-$response = \Httpful\Request::get($url)->send();
-echo "<pre>";
-var_dump($response->body);
-die();
+// // USE Httpful
+// $response = \Httpful\Request::get($url)->send();
+// echo "<pre>";
+// var_dump($response->body);
+// die();
 
 ?>
 

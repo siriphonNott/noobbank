@@ -63,7 +63,9 @@ $('#transfer-submit').click(function () {
       error: function (jqXHR, textStatus, statusText) {
         var textResponse = 'Please check your infomation again.';
         if (jqXHR.responseJSON.errorMessage == 'NOT_FOUND_ACCOUNT_NO') {
-          textResponse = ' <i class="fa fa-times-circle"></i> Not found Account No. Recipient.';
+          textResponse = ' <i class="fa fa-times-circle"></i> Not found Account Number.';
+        } else if (jqXHR.responseJSON.errorMessage == 'INVALID_ACCOUNT_NO') {
+          textResponse = ' <i class="fa fa-times-circle"></i> Account Number is invalid.';
         } else if (jqXHR.responseJSON.errorMessage == 'INSUFFICIENT_AMOUNT') {
           textResponse = ' <i class="fa fa-times-circle"></i> Your balance is not enough..';
         }
