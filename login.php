@@ -11,15 +11,24 @@ if (isset($_SESSION['customer_id'])) {
   <!--Head-->
 
   <head>
-    <meta charset="utf-8" />
+
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@nottdev.com">
+    <meta property="twitter:creator" content="@NottDev">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Noob Bank">
+    <meta property="og:title" content="Noob Bank with PHP OOP">
+    <meta property="og:url" content="https://noobbank.nottdev.com/">
+    <meta property="og:image" content="https://noobbank.nottdev.com/img/banner-show.jpg">
+    <meta property="og:description" content="Web application for learning about basic web security. ">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Noob Bank</title>
-
-    <meta name="description" content="login page" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-
     <!--fontawesome-->
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <!-- <script defer src="assets/fonts/fontawesome/svg-with-js/js/fontawesome-all.js"></script> -->
