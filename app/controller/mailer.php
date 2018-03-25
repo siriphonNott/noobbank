@@ -64,7 +64,7 @@ function content_email($name, $email)
                       <tbody>
                         <tr>
                           <td width="32" align="left" valign="middle" style="height:32;line-height:0px;">
-                            <img src="https://nottdev.com/noobbank.png" width="70" height="70" style="border:0" class="">
+                            <img src="https://noobbank.nottdev.com/img/logo.png" width="70" height="70" style="border:0" class="">
                           </td>
                           <td width="100%">
                             <span style="font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;font-size:25px;line-height:32px;color:#bebebe;">Noob Bank</span>
@@ -114,7 +114,7 @@ function content_email($name, $email)
                                         <tbody>
                                           <tr>
                                             <td style="border-collapse:collapse;border-radius:2px;text-align:center;display:block;border:solid 1px #89d03b;background:#89d03b;padding:7px 16px 11px 16px;">
-                                              <a href="https://nottdev.com" target="_blank" data-saferedirecturl="" style="text-decoration: none;">
+                                              <a href="https://noobbank.nottdev.com" target="_blank" data-saferedirecturl="" style="text-decoration: none;">
                                                 <center>
                                                   <font size="3">
                                                     <span style="font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;white-space:nowrap;font-weight:bold;vertical-align:middle;color:#ffffff;font-size:14px;line-height:14px">กลับไปที่&nbsp; Noob Bank</span>
@@ -176,7 +176,7 @@ function content_email($name, $email)
                       <tbody>
                         <tr>
                           <td width="100%">
-                            <img src="https://nottdev.com/top.png"  width="100%" >
+                            <img src="https://noobbank.nottdev.com/img/banner-email.png"  width="100%" >
                           </td>
                         </tr>
                       </tbody>

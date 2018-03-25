@@ -9,9 +9,6 @@ class Database
     public function connect($username, $password, $dbname)
     {
         $servername = "localhost";
-        $username = $username;
-        $password = $password;
-        $dbname = $dbname;
 
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -26,9 +23,6 @@ class Database
     public function connect2($username, $password, $dbname)
     {
         $servername = "localhost";
-        $username = $username;
-        $password = $password;
-        $dbname = $dbname;
 
         // Create connection
         $conn = new \mysqli($servername, $username, $password, $dbname);
