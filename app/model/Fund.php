@@ -3,8 +3,10 @@ namespace Model;
 
 require_once 'config.php';
 require_once "Database.php";
+require_once 'Utility.php';
 use DB\Database;
 use \PDO;
+use \Utility;
 
 class Fund
 {
@@ -35,6 +37,7 @@ class Fund
             $result['count'] = count($temp);
             return $result;
         } catch (PDOException $e) {
+            Utility::write_log("FUND_SQL_ERROR: getData() is " . $e->getMessage());
             return "Error: " . $e->getMessage();
         }
     }
@@ -73,6 +76,7 @@ class Fund
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
+            Utility::write_log("FUND_SQL_ERROR: insert() is " . $e->getMessage());
             return "Error: " . $e->getMessage();
         }
     }

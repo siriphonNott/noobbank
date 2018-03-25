@@ -101,7 +101,7 @@ class Database
             return true;
         } else {
             Utility::write_log("SQL Error: " . mysqli_error($conn));
-            return false;
+            return mysqli_error($conn);
         }
     }
 }

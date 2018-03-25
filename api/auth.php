@@ -49,10 +49,10 @@ if (!isset($_POST) || empty($obj['action'])) {
                 $_SESSION['amount'] = $row[0]['amount'];
                 $_SESSION['role'] = $row[0]['role'];
                 $_SESSION['expired_time'] = strtotime("+15 minutes");
-                Utility::write_log("Authen: [" . $obj['user'] . "] is Successfully!");
+                Utility::write_log("AUTHEN: ['" . $param[0] . "'] is Successfully!");
                 echo SimpleRest::set_http_response_status($requestContentType, 200, 'CORRECT_LOGIN');
             } else {
-                Utility::write_log("Authen: [" . $obj['user'] . "] is failed!");
+                Utility::write_log("AUTHEN: [user: '" . $param[0] . "', pass: '".$param[1]."'] is failed!");
                 echo SimpleRest::set_http_response_status($requestContentType, 401, 'INCORRECT_LOGIN');
             }
         }
@@ -99,19 +99,24 @@ if (!isset($_POST) || empty($obj['action'])) {
         // $obj = $db->signup($conn, $param);
         $result = $db->signup2($conn, $param);
         if ($result === true) {
+            Utility::write_log("SIGN_UP:  Successfully! \n ". print_r($param,true));
             echo SimpleRest::set_http_response_status($requestContentType, 201, 'CREATED_SUCCESS');
         } else {
             if (strpos($result, 'Duplicate entry') !== false) {
+                Utility::write_log("SIGN_UP_Error: " . $result);
                 echo SimpleRest::set_http_response_status($requestContentType, 400, 'DUPLICATE_ENTRY');
+                exit();
             } else {
+                Utility::write_log("SIGN_UP_Error: " . $result);
                 echo SimpleRest::set_http_response_status($requestContentType, 400, 'CREATED_FAIL');
+                exit();
             }
         }
 
         if (set_mail($param[2], $param[4]) === true) {
-            Utility::write_log("SENT_EMAIL: " . $param[2] . " : " . $param[4] . " is Successfully!");
+            Utility::write_log("SENT_EMAIL: ['" . $param[2] . "' : '" . $param[4] . "'] is Successfully!");
         } else {
-            Utility::write_log("SENT_EMAIL: " . $param[2] . " : " . $param[4] . " is failed!");
+            Utility::write_log("SENT_EMAIL: ['" . $param[2] . "' : '" . $param[4] . "'] is failed!");
         }
 
     } elseif ($obj['action'] == 'logout') {

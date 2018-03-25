@@ -64,8 +64,10 @@ if (!isset($_POST) || empty($obj['action'])) {
         $status_update = $member->updateAmount($param_dst);
 
         if ($status_trans && $status_update) {
+            Utility::write_log("TRANSFER: acc_src: ['" . $data_src['rows'][0]['account_no'] . "'], acc_des: ['" . $obj['account_number_des'] . "'], amount: ['" . $obj['amount_transfer'] . "'] is Successfully! ");
             echo $httpResponse->set_http_response_status($requestContentType, 200, 'TRANS_SUCCESS');
         } else {
+            Utility::write_log("TRANSFER_ERROR: acc_src: ['" . $data_src['rows'][0]['account_no'] . "'], acc_des: ['" . $obj['account_number_des'] . "'] => " . $status_trans);
             echo $httpResponse->set_http_response_status($requestContentType, 400, $status_trans);
         }
         die();
@@ -87,17 +89,19 @@ if (!isset($_POST) || empty($obj['action'])) {
 
         if (($data['rows'][0]['amount']) < ($fund_cost * $obj['fund_unit'])) {
             echo $httpResponse->set_http_response_status($requestContentType, 400, 'INSUFFICIENT_AMOUNT');
-            die();
+            exit();
         }
 
         $status_fund = $fund->insert($param);
         $status_update = $member->updateAmount($param2);
         if ($status_fund && $status_update) {
             echo $httpResponse->set_http_response_status($requestContentType, 200, 'FUND_SUCCESS');
+            Utility::write_log("FUND: cust_id: ['" . $_SESSION['customer_id'] . "'], type: ['" . (int) $fund_type . "'], amount:['" . (int) $fund_cost . "'], unit: ['" . $obj['fund_unit'] . "'] is Successfully! ");
         } else {
             echo $httpResponse->set_http_response_status($requestContentType, 400, $status_fund);
+            Utility::write_log("FUND_ERROR: cust_id: '" . $_SESSION['customer_id'] . "' => " . $status_fund);
         }
-        die();
+        exit();
 
     }
 

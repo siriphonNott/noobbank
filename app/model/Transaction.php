@@ -4,6 +4,8 @@ namespace Model;
 
 require_once 'config.php';
 require_once "Database.php";
+require_once 'Utility.php';
+use \Utility;
 use DB\Database;
 use \PDO;
 
@@ -33,6 +35,7 @@ class Transaction
             $result['count'] = count($temp);
             return $result;
         } catch (PDOException $e) {
+            Utility::write_log("TRANSFER_SQL_ERROR: getData() is " . $e->getMessage());
             return "Error: " . $e->getMessage();
         }
     }
@@ -77,6 +80,7 @@ class Transaction
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
+            Utility::write_log("TRANSFER_SQL_ERROR: insert() is " . $e->getMessage());
             return "Error: " . $e->getMessage();
         }
     }

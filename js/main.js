@@ -30,16 +30,25 @@ function logout() {
   });
 }
 
+function close_modal(id) {
+  $('#' + id).fadeOut();
+  clear_status('transfer');
+  clear_status('fund');
+  clear_border();
+}
+
 
 $('#transfer-submit').click(function () {
   var $form = $('#transfer-form');
   var serializedData = $form.serializeArray();
   var json = serializeToJson(serializedData, true);
   clear_border();
-  if (json.amount_transfer == "") {
-    $('#amount_transfer').addClass('error-border');
-  } else if (json.account_transfer == "") {
+  if (json.account_number_des == "") {
+    $('#status_meessage_transfer').addClass('error').html('<i class="fa fa-times-circle"></i> Enter To Amount Number');
     $('#account_transfer').addClass('error-border');
+  } else if (json.amount_transfer == "") {
+    $('#status_meessage_transfer').addClass('error').html('<i class="fa fa-times-circle"></i> Enter Amount');
+    $('#amount_transfer').addClass('error-border');
   } else {
     clear_status('transfer');
 
@@ -63,14 +72,13 @@ $('#transfer-submit').click(function () {
       error: function (jqXHR, textStatus, statusText) {
         var textResponse = 'Please check your infomation again.';
         if (jqXHR.responseJSON.errorMessage == 'NOT_FOUND_ACCOUNT_NO') {
-          textResponse = ' <i class="fa fa-times-circle"></i> Not found Account Number.';
+          textResponse = ' Not found Account Number.';
         } else if (jqXHR.responseJSON.errorMessage == 'INVALID_ACCOUNT_NO') {
-          textResponse = ' <i class="fa fa-times-circle"></i> Account Number is invalid.';
+          textResponse = ' Account Number is invalid.';
         } else if (jqXHR.responseJSON.errorMessage == 'INSUFFICIENT_AMOUNT') {
-          textResponse = ' <i class="fa fa-times-circle"></i> Your balance is not enough..';
+          textResponse = ' Your balance is not enough..';
         }
-        $('#status_meessage_transfer').addClass('error');
-        $('#status_meessage_transfer').html(textResponse);
+        $('#status_meessage_transfer').addClass('error').html(' <i class="fa fa-times-circle"></i>' + textResponse);
       }
     });
   }

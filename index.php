@@ -245,7 +245,7 @@ $count = 0;
                 </form>
 
                 <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                  <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+                  <button onclick="close_modal('id01')" type="button" class="w3-button w3-red">Cancel</button>
                 </div>
 
               </div>
@@ -301,7 +301,7 @@ $count = 0;
                 </form>
 
                 <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                  <button onclick="document.getElementById('id02').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+                  <button onclick="close_modal('id02')" type="button" class="w3-button w3-red">Cancel</button>
                 </div>
 
               </div>
