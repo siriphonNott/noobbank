@@ -9,19 +9,22 @@ if ($_SERVER['REQUEST_URI'] == "/" || strpos($_SERVER['REQUEST_URI'], "index") !
 ?>
   <!DOCTYPE html>
   <html lang="en">
-
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="PHP - OOP">
-    <meta name="author" content="NottDev">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@nottdev.com">
+    <meta property="twitter:creator" content="@NottDev">
+    <!-- Open Graph Meta-->
     <meta property="og:type" content="website">
-	  <meta property="og:site_name" content="Noob Bank">
-	  <meta property="og:title" content="Noob Bank with PHP OOP">
-	  <meta property="og:url" content="https://noobbank.nottdev.com/">
-	  <meta property="og:image" content="https://noobbank.nottdev.com/img/banner-show.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.ico">
+    <meta property="og:site_name" content="Noob Bank">
+    <meta property="og:title" content="Noob Bank with PHP OOP">
+    <meta property="og:url" content="https://noobbank.nottdev.com/">
+    <meta property="og:image" content="https://noobbank.nottdev.com/img/banner-show.jpg">
+    <meta property="og:description" content="Web application for learning about basic web security. ">
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Noob Bank</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
