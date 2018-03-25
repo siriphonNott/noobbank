@@ -23,6 +23,13 @@ if (isset($_SESSION['customer_id'])) {
     <meta property="og:url" content="https://noobbank.nottdev.com/">
     <meta property="og:image" content="https://noobbank.nottdev.com/img/banner-show.jpg">
     <meta property="og:description" content="Web application for learning about basic web security. ">
+    <!-- Basic Meta-->
+    <meta property="type" content="website">
+    <meta property="site_name" content="Noob Bank">
+    <meta property="title" content="Noob Bank with PHP OOP">
+    <meta property="url" content="https://noobbank.nottdev.com/">
+    <meta property="image" content="https://noobbank.nottdev.com/img/banner-show.jpg">
+    <meta property="description" content="Web application for learning about basic web security. ">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
